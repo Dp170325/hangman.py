@@ -1,0 +1,116 @@
+print("start")
+import random
+item=["jellyfish","helichopper","generation","blackmamba","genzgenalpha"]
+stages = [
+    """
+      +---+
+      |   |
+          |
+          |
+          |
+          |
+    =========
+    """,              
+    """
+      +---+
+      |   |
+      O   |
+          |
+          |
+          |
+    =========
+    """,
+    """
+      +---+
+      |   |
+      O   |
+      |   |
+          |
+          |
+    =========
+    """,
+    """
+      +---+
+      |   |
+      O   |
+     /|   |
+          |
+          |
+    =========
+    """,
+    """
+      +---+
+      |   |
+      O   |
+     /|\  |
+          |
+          |
+    =========
+    """,
+    """
+      +---+
+      |   |
+      O   |
+     /|\  |
+     / \  |
+          |
+    =========
+    """
+]
+
+
+word=random.choice(item)
+
+    
+    
+display=["_"]*len(word) # ...
+
+lives=len(stages)-1
+
+  
+guessed =[]
+
+print(" ".join(display))
+while lives > 0: 
+    print("you have ", lives," lives left" )
+      
+    guess=input("guess a letter : ",).lower() # take letter from user
+    
+    # invalid input check
+    if len(guess)!= 1 or not guess.isalpha():
+        print (" invalid input ,onlt of leter of alphabet")
+        continue
+    
+    
+    #repeated  guess
+    if guess in guessed:
+        print("already guessed")
+        continue
+    
+    guessed.append(guess)
+    
+    # # guess is wrong 
+    
+    if guess not in word:
+        lives -= 1
+        print("Wrong!")
+        if lives >= 0:
+            print(stages[lives])
+        
+    
+    for i in range(len(word)):
+        if word[i] == guess:
+            display[i] = guess
+        
+   
+    print("".join(display) )
+    
+
+    if "_" not in display:
+    print("You won! , Word is:", word)
+    break
+        
+if "_" in display:
+    print("You lost! Word was:", word)        
+       
+    
